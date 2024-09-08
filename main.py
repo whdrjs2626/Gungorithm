@@ -1,16 +1,26 @@
-
+# def solution(n):
+#     answer = 0
+#     for i in range(1, n + 1):
+#         sum = 0
+#         for j in range(i, n + 1):
+#             sum += j
+#             if sum == n:
+#                 answer += 1
+#     return answer
 
 if __name__ == "__main__":
-    players = ["mumu", "soe", "poe", "kai", "mine"]
-    callings = ["kai", "kai", "mine", "mine"]
-    players_dict = {player: i for i, player in enumerate(players)}
+    n = 15
+    answer = 0
+    for i in range(1, n + 1):
+        sum = 0
+        j = i
+        while sum < n:
+            sum += j
+            j += 1
+            if sum > n:
+                continue
+            elif sum == n:
+                answer += 1
 
-    for call in callings:
-        idx = players_dict[call]
 
-        players[idx], players[idx - 1] = players[idx - 1], players[idx]
-
-        players_dict[players[idx]] = idx
-        players_dict[players[idx - 1]] = idx - 1
-
-    a = 1
+    print(result)
