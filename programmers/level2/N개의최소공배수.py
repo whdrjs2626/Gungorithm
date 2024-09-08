@@ -8,7 +8,7 @@ arr의 원소는 100 이하인 자연수입니다.
 """
 
 # 최대공약수를 직접 구한 버전
-def lcm(a, b):
+def gcd(a, b):
     while b:
         r = a % b
         a, b = b, r
@@ -18,7 +18,7 @@ def solution(arr):
     a = arr[0]
     for num in arr[1:]:
         b = num
-        a = a * b // lcm(a, b)
+        a = a * b // gcd(a, b)
     return a
 
 
@@ -27,7 +27,7 @@ def solution(arr):
     from math import gcd
     answer = arr[0]
 
-    for num in arr:
+    for num in arr[1:]:
         answer = answer * num // gcd(answer, num)
 
     return answer
