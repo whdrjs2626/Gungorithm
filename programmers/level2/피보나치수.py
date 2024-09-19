@@ -22,3 +22,19 @@ def solution(n):
     for i in range(2, n+1):
         li[i] = li[i-1] + li[i-2]
     return li[n] % 1234567
+
+
+
+"""
+아래 코드는 초기에 풀었던 시간초과가 났던 방식
+재귀함수를 사용하였음
+"""
+
+def fibo(n):
+    if n in (0, 1):
+        return n
+    else:
+        return fibo(n-1) + fibo(n-2)
+
+def solution2(n):
+    return fibo(n) % 1234567
