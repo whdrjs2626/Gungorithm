@@ -1,38 +1,134 @@
 """
-문제 설명
-두 수의 최소공배수(Least Common Multiple)란 입력된 두 수의 배수 중 공통이 되는 가장 작은 숫자를 의미합니다. 예를 들어 2와 7의 최소공배수는 14가 됩니다. 정의를 확장해서, n개의 수의 최소공배수는 n 개의 수들의 배수 중 공통이 되는 가장 작은 숫자가 됩니다. n개의 숫자를 담은 배열 arr이 입력되었을 때 이 수들의 최소공배수를 반환하는 함수, solution을 완성해 주세요.
+1 1 0
+1 1 0
+0 0 1
 
-제한 사항
-arr은 길이 1이상, 15이하인 배열입니다.
-arr의 원소는 100 이하인 자연수입니다.
+1 1 0
+1 1 1
+0 1 1
 """
 
-def solution(arr):
-    from math import gcd                            # 최대공약수를 구하는 gcd() import
-    answer = arr[0]                                 # answer을 arr[0]으로 초기화
+def solution(n, computers):
+    answer = 0
+    visited = [False for _ in range(n)]     # 방문 여부 저장 배열
 
-    for num in arr:                                 # 반복문을 처음부터 끝까지 돈다.
-        #1. (arr[0],arr[1])의 최소공배수를 구한 후 answer에 저장
-        #2. (#1에서 구한 최소공배수, arr[2])의 최소공배수를 구한 후 answer에 저장
-        #3. 모든 배열을 돌면서 최소공배수를 구하고, 저장하고 하는 방식을 진행
-        answer = answer * num // gcd(answer, num)
+    for com in range(n):
+        if visited[com] == False:   # 1번 ~ n번 컴퓨터까지 가면서 방문하지 않은 컴퓨터라면
+            DFS(n, computers, com, visited)
+            answer += 1
+    return answer
+
+
+def DFS(n, computers, com, visited):
+    visited[com] = True        # 해당 노드의 방문 여부를 True로 변경
+    for i in range(n):          # 해당 노드와 연결된 다음 노드들을 모두 탐색
+        if i != com and computers[i][com] == 1 and visited[i] == False:
+                DFS(n, computers, i, visited)       # i랑 연결된 다음 노드도 쭉 탐색
+
+# 자기 자신이 아니고, 이전 노드(com)와 현재 노드(i)가 연결된 노드이며, 현재 노드가 방문하지 않은 노드라면 방문하고, 현재 노드(i)에 대한 DFS를 계속 진행
+# 연결되지 않은 노드가 나오는 순간 DFS 종료
+
+
+from collections import deque
+
+
+def solution(n, computers):
+    answer = 0
+    visited = [False for _ in range(n)]
+
+    for com in range(n):
+        if visited[com] == False:
+            BFS(n, computers, com, visited)
+            answer += 1
 
     return answer
 
-def lcm(a, b):
-    while b:
-        r = a % b
-        a, b = b, r
-    return a
 
-if __name__ == "__main__":
-    arr = [2,6,8,14] # 168
+def BFS(n, computers, com, visited):
+    visited[com] = True  # 방문을 했으므로 방문여부를 참으로 변경
+    queue = deque()
+    queue.append(com)
+
+    while len(queue) > 0:  # 큐에 요소가 남아있는 동안 계속 append, pop 작업을 진행
+        com = queue.pop()
+        visited[com] = True
+
+        for i in range(n):
+            if visited[i] == False and computers[i][com] == 1 and i != com:
+                queue.append(i)
+
+
+from collections import deque
+
+
+def solution(n, computers):
     answer = 0
-    a = arr[0]
-    for num in arr[1:]:
-        b = num
-        a = a * b // lcm(a, b)
-    print(a)
+    visited = [False for _ in range(n)]
+
+    for com in range(n):
+        if visited[com] == False:
+            BFS(n, computers, com, visited)
+            answer += 1
+
+    return answer
+
+
+def BFS(n, computers, com, visited):
+    visited[com] = True  # 방문을 했으므로 방문여부를 참으로 변경
+    queue = deque()
+    queue.append(com)
+
+    for i in range(n):
+        if visited[i] == False and computers[i][com] == 1 and i != com:
+            BFS(n, computers, i, visited)
+
+"""
+def fibo(n):
+    if n in (0, 1):
+        return n
+    else:
+        return fibo(n-1) + fibo(n-2)
+    
+def solution(n):
+    return fibo(n) % 1234567
+"""
+if __name__ == "__main__":
+    tangerine = [1, 3, 2, 5, 4, 5, 2, 3]
+    k = 6
+    count = 0
+    size = {}
+    for i in tangerine:
+        if size.get(i, -1) == -1:
+            size[i] = 1
+        else:
+            size[i] += 1
+    size = sorted(size.items(), key=lambda item: item[1], reverse=True)
+    for i, row in enumerate(size):
+        count += i[1]
+        if count >= k:
+            break
+
+    # import sys
+    #
+    #
+    # N = int(sys.stdin.readline())
+    # t, p, dp = [0 for _ in range(N + 1)], [0 for _ in range(N + 1)], [0 for _ in range(N + 1)]
+    # for i in range(1, N + 1):
+    #     t[i], p[i] = map(int, sys.stdin.readline().split())
+    #
+    # for i in range(1, N + 1):
+    #     t, p = map(int, sys.stdin.readline().split())
+    #     dp[i] = max(dp[i - 1], dp[i])
+    #     if i + t <= N + 1:
+    #         dp[i + t - 1] = max(dp[i - 1] + p, dp[i + t - 1])
+    #
+    # print(dp[-1])
+
+
+
+
+
+
 
 
 
