@@ -8,7 +8,7 @@
 0 1 1
 """
 
-def solution(n, computers):
+def solution2(n, computers):
     answer = 0
     visited = [False for _ in range(n)]     # 방문 여부 저장 배열
 
@@ -32,7 +32,7 @@ def DFS(n, computers, com, visited):
 from collections import deque
 
 
-def solution(n, computers):
+def solution1(n, computers):
     answer = 0
     visited = [False for _ in range(n)]
 
@@ -61,7 +61,7 @@ def BFS(n, computers, com, visited):
 from collections import deque
 
 
-def solution(n, computers):
+def solution3(n, computers):
     answer = 0
     visited = [False for _ in range(n)]
 
@@ -92,23 +92,29 @@ def fibo(n):
 def solution(n):
     return fibo(n) % 1234567
 """
-if __name__ == "__main__":
-    tangerine = [1, 3, 2, 5, 4, 5, 2, 3]
-    k = 6
-    count = 0
-    size = {}
-    for i in tangerine:
-        if size.get(i, -1) == -1:
-            size[i] = 1
-        else:
-            size[i] += 1
-    size = sorted(size.items(), key=lambda item: item[1], reverse=True)
-    for i, row in enumerate(size):
-        count += i[1]
-        if count >= k:
-            break
 
-    import sys
+def solution(want, number, discount):
+    result = {}
+    for i in discount:
+        if result.get(i, '') == '':
+            result[i] = 1
+        else:
+            result[i] += 1
+
+    for i, w in enumerate(want):
+        if result.get(w, 0) >= number[i]:
+    return result
+
+if __name__ == "__main__":
+    want = ["banana", "apple", "rice", "pork", "pot"]
+    number = [3, 2, 2, 2, 1]
+    discount = ["chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"]
+    print(solution(want, number, discount))
+
+
+
+
+    # import sys
 
 
     # N = int(sys.stdin.readline())
