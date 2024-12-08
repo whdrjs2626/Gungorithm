@@ -92,46 +92,49 @@ def fibo(n):
 def solution(n):
     return fibo(n) % 1234567
 """
+"""
+def solution(arr1, arr2):
+    answer = []
+    for i, row in enumerate(arr1):
+        tmp = []
+        for j, num2 in enumerate(row):
+            tmp.append(num2 * arr2[j][i])
+        answer.append(tmp)
 
-def solution(want, number, discount):
-    result = {}
-    for i in discount:
-        if result.get(i, '') == '':
-            result[i] = 1
-        else:
-            result[i] += 1
+    return answer
 
-    for i, w in enumerate(want):
-        if result.get(w, 0) >= number[i]:
-    return result
 
+# 2 3 2   5 4 3
+# 4 2 4   2 4 1
+# 3 1 4   3 1 1
 if __name__ == "__main__":
-    want = ["banana", "apple", "rice", "pork", "pot"]
-    number = [3, 2, 2, 2, 1]
-    discount = ["chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"]
-    print(solution(want, number, discount))
+    arr1 = [[1, 4], [3, 2], [4, 1]]
+    arr2 = [[3, 3], [3, 3]]
+    print(solution(arr1, arr2))
+"""
+
+def solution(arr1, arr2):
+    if len(arr1) > len(arr2):
+        return 1
+    elif len(arr1) < len(arr2):
+        return -1
+    else:
+        if sum(arr1) > sum(arr2):
+            return 1
+        elif sum(arr1) < sum(arr2):
+            return -1
+        else:
+            return 0
 
 
-
-
-    import sys
-
-
-    N = int(sys.stdin.readline())
-    t, p, dp = [0 for _ in range(N + 1)], [0 for _ in range(N + 1)], [0 for _ in range(N + 1)]
-    for i in range(1, N + 1):
-        t[i], p[i] = map(int, sys.stdin.readline().split())
-
-    for i in range(1, N + 1):
-        t, p = map(int, sys.stdin.readline().split())
-        dp[i] = max(dp[i - 1], dp[i])
-        if i + t <= N + 1:
-            dp[i + t - 1] = max(dp[i - 1] + p, dp[i + t - 1])
-
-    print(dp[-1])
-
-
-
+# 2 3 2   5 4 3
+# 4 2 4   2 4 1
+# 3 1 4   3 1 1
+if __name__ == "__main__":
+    a = -4
+    b = 7
+    flag = True
+    print(solution(a, b, flag))
 
 
 
