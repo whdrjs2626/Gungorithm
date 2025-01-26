@@ -8,3 +8,6 @@
 출력
 시험 성적을 출력한다.
 """
+
+def solution(str):
+    return str
