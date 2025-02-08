@@ -91,27 +91,27 @@ def fibo(n):
     
 def solution(n):
     return fibo(n) % 1234567
-"""
-"""
-def solution(arr1, arr2):
-    answer = []
-    for i, row in enumerate(arr1):
-        tmp = []
-        for j, num2 in enumerate(row):
-            tmp.append(num2 * arr2[j][i])
-        answer.append(tmp)
-
-    return answer
-
-
-# 2 3 2   5 4 3
-# 4 2 4   2 4 1
-# 3 1 4   3 1 1
-if __name__ == "__main__":
-    arr1 = [[1, 4], [3, 2], [4, 1]]
-    arr2 = [[3, 3], [3, 3]]
-    print(solution(arr1, arr2))
-"""
+# """
+# """
+# def solution(arr1, arr2):
+#     answer = []
+#     for i, row in enumerate(arr1):
+#         tmp = []
+#         for j, num2 in enumerate(row):
+#             tmp.append(num2 * arr2[j][i])
+#         answer.append(tmp)
+#
+#     return answer
+#
+#
+# # 2 3 2   5 4 3
+# # 4 2 4   2 4 1
+# # 3 1 4   3 1 1
+# if __name__ == "__main__":
+#     arr1 = [[1, 4], [3, 2], [4, 1]]
+#     arr2 = [[3, 3], [3, 3]]
+#     print(solution(arr1, arr2))
+# """
 
 
 
