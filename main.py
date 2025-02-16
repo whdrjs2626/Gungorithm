@@ -113,20 +113,15 @@ def solution(n):
 #     print(solution(arr1, arr2))
 # """
 
-
-
+import math
+def solution(numer1, denom1, numer2, denom2):
+    return list(map(lambda a: a // math.gcd(denom1 * numer2 + denom2 * numer1, denom1 * denom2), [denom1 * numer2 + denom2 * numer1, denom1 * denom2]))
 
 # 2 3 2   5 4 3
 # 4 2 4   2 4 1
 # 3 1 4   3 1 1
 if __name__ == "__main__":
-    a = -4
-    b = 7
-    flag = True
-    print(solution(a, b, flag))
-
-
-
-
+    result = solution(1,2,3,4)
+    print(result)
 
 
