@@ -20,6 +20,6 @@ def solution(n, w, num):
 
 
 if __name__ == "__main__":
-    result = solution(13,3,6)
-    print(result)
+    # result = solution(13,3,6)
+    # print(result)
 
