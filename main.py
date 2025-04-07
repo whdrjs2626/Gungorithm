@@ -1,20 +1,27 @@
-"""
-progresses	speeds	return
-[93, 30, 55]	[1, 30, 5]	[2, 1]
-"""
-import math
-def solution(a, b):
-    if (a + b) % 2 == 0:
-        if a % 2 == 0 and b % 2 == 0:
-            return abs(a - b)
-        else:
-            return a**2 + b**2
-    else:
-        return 2 * (a + b)
+def solution(numbers):
+    n_list = {
+        0: 0,
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0
+    }
+    sum = 0
+    for n in numbers:
+        n_list[n] += 1
+
+    for n_key in n_list.keys():
+        if n_list[n_key] == 0:
+            sum += n_key
+    return sum
 
 
 
-if __name__ == "__main__":
-    result = solution(3, 5)
-    print(result)
+result = solution([1,2,3,4,5,6,7,8,0])
 
+print(result)
