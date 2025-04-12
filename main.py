@@ -2,19 +2,23 @@
 progresses	speeds	return
 [93, 30, 55]	[1, 30, 5]	[2, 1]
 """
-import math
-def solution(a, b):
-    if (a + b) % 2 == 0:
-        if a % 2 == 0 and b % 2 == 0:
-            return abs(a - b)
+def solution(num):
+    if num == 1: return 0
+    count = 0
+    while True:
+        if num % 2 == 0:
+            num /= 2
         else:
-            return a**2 + b**2
-    else:
-        return 2 * (a + b)
+            num = num * 3 + 1
+        count += 1
+        if count > 500:
+            return -1
+        elif num == 1:
+            return count
 
 
 
 if __name__ == "__main__":
-    result = solution(3, 5)
+    result = solution(1)
     print(result)
 
