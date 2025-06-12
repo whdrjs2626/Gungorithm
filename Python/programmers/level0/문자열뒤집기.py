@@ -9,5 +9,5 @@ my_string은 숫자와 알파벳으로만 이루어져 있습니다.
 """
 
 def solution(my_string, s, e):
-  return my_string[:s] + my_string[s:e:-1] + my_string[e:]
+  return my_string[:s] + my_string[-(len(my_string) - e):-(len(my_string) - s + 1):-1] + my_string[e + 1:]
   
