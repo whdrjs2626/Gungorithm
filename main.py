@@ -13,7 +13,20 @@ def video_control(video_len, pos, op_start, op_end, type):
         cur = end
     print(str(cur // 60).zfill(2) + ":" + str(cur % 60).zfill(2))
     return str(cur // 60).zfill(2) + ":" + str(cur % 60).zfill(2)
-
+    
+def video_control(video_len, pos, op_start, op_end, type):
+    total = int(video_len.split(':')[0]) * 60 + int(video_len.split(':')[1])
+    cur = int(pos.split(':')[0]) * 60 + int(pos.split(':')[1])
+    start = int(op_start.split(':')[0]) * 60 + int(op_start.split(':')[1])
+    end = int(op_end.split(':')[0]) * 60 + int(op_end.split(':')[1])
+    if type == "next":
+        cur += 10
+        cur = min(cur, total)
+        if cur > start and cur < end:
+            cur = end
+        elif cur > end and cur < start:
+            cur = start
+    
 def solution(video_len, pos, op_start, op_end, commands):
     for com in commands:
         pos = video_control(video_len, pos, op_start, op_end, com)
